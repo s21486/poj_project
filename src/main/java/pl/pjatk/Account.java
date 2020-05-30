@@ -6,7 +6,10 @@ import java.util.Locale;
 
 public class Account implements ScreenPrinter{
     private User user;
+
+    @AccountNumber()
     private String accountNumber;
+
     private Locale locale;
     private Currency currency;
     private BigDecimal ammount;
