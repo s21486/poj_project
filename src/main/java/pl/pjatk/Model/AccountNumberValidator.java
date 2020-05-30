@@ -1,4 +1,4 @@
-package pl.pjatk;
+package pl.pjatk.Model;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

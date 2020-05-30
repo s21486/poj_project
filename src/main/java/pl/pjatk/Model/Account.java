@@ -1,10 +1,10 @@
-package pl.pjatk;
+package pl.pjatk.Model;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
 
-public class Account implements ScreenPrinter{
+public class Account extends Entity{
     private User user;
 
     @AccountNumber()
@@ -12,14 +12,14 @@ public class Account implements ScreenPrinter{
 
     private Locale locale;
     private Currency currency;
-    private BigDecimal ammount;
+    private BigDecimal balance;
 
     public Account(User user, String accountNumber, Locale locale, double ammount) {
         this.user = user;
         this.accountNumber = accountNumber;
         this.locale = locale;
         this.currency = Currency.getInstance(locale);
-        this.ammount = new BigDecimal(Double.toString(ammount));
+        this.balance = new BigDecimal(Double.toString(ammount));
     }
 
     public User getUser() {
@@ -54,12 +54,16 @@ public class Account implements ScreenPrinter{
         this.currency = currency;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setBalance(BigDecimal ammount) {
+        this.balance = ammount;
+    }
+
+    public void addBalance(BigDecimal ammount) {
+        this.setBalance(getBalance().add(ammount));
     }
 
     @Override
@@ -69,7 +73,7 @@ public class Account implements ScreenPrinter{
         System.out.println("Konto:");
         System.out.println(String.format("Numer konta: %s", accountNumber));
         System.out.println("Waluta: " + currency.getCurrencyCode());
-        System.out.println("Stan konta: " + ammount.toString() + currency.getSymbol());
+        System.out.println("Stan konta: " + balance.toString() + currency.getSymbol());
     }
 }
 

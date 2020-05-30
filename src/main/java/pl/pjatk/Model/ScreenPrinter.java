@@ -1,4 +1,4 @@
-package pl.pjatk;
+package pl.pjatk.Model;
 
 public interface ScreenPrinter {
     public void printToScreen();

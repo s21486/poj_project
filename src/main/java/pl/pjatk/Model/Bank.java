@@ -1,8 +1,8 @@
-package pl.pjatk;
+package pl.pjatk.Model;
 
 import java.util.List;
 
-public class Bank {
+public class Bank extends Entity {
     private String bankId;
     private List<Account> accountList;
 
@@ -33,5 +33,10 @@ public class Bank {
 
     public void removeAccountByNumber(String accountNumber){
         accountList.removeIf(account -> account.getAccountNumber() == accountNumber);
+    }
+
+    @Override
+    public void printToScreen() {
+        System.out.println("Bank Id: " + bankId);
     }
 }

@@ -1,7 +1,6 @@
-package pl.pjatk;
+package pl.pjatk.Model;
 
-
-public class User implements ScreenPrinter {
+public class User extends Entity {
     private static int usersNumber = 0;
     private int userId;
     private String name;
