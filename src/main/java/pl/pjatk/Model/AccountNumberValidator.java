@@ -13,12 +13,14 @@ public class AccountNumberValidator implements ConstraintValidator<AccountNumber
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if(s == null) return false;
+        //sprawdzam, czy zawiera same liczby
         try{
             new BigInteger(s.replaceAll("\\s+",""));
         }catch (NumberFormatException e) {
             return false;
         }
+
+        //sprawdzam, czy ma długość 26 znaków
         if(s.replaceAll("\\s+", "").length() == 26) {
             return true;
         }

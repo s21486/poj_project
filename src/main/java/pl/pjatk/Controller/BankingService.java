@@ -21,16 +21,16 @@ public class BankingService {
 
     //zwraca stan konta dla usera
     public BigDecimal accountBalance(User user) {
-        Account account = getAccountForUser(user).get();
-        return account.getBalance();
+        return getAccountForUser(user).get().getBalance();
     }
 
     //sprawdza, czy nr konta zgadza się z kodem banku
     public boolean checkBankAndAccountCorrelation(Account account) {
-        return account.getAccountNumber().substring(2, 6).equals(bank.getBankId());
+        return account.getAccountNumber().replaceAll("\\s+", "")
+                .substring(2, 6).equals(bank.getBankId());
     }
 
-    //zmienia stan konta usera o podaną kwotę
+    //zmienia stan konta usera o podaną kwotę i zwraca stan konta po zmianie
     public BigDecimal topUpAccount(BigDecimal topUpAmmount, User user) {
         Account account = getAccountForUser(user).get();
         account.addBalance(topUpAmmount);
@@ -39,9 +39,8 @@ public class BankingService {
 
     //transferuje środki z konta jednego usera na konto drugiego usera, zwraca kwotę przelewu
     public BigDecimal transferMoney(User fromUser, User toUser, BigDecimal ammount) {
-        getAccountForUser(fromUser).get().addBalance(ammount.negate());
-        getAccountForUser(toUser).get().addBalance(ammount);
-
+        topUpAccount(ammount.negate(), fromUser);
+        topUpAccount(ammount, toUser);
         return ammount;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Locale;
 public class Account extends Entity{
     private User user;
 
-    @AccountNumber()
+    @AccountNumber() //walidacja nr konta
     private String accountNumber;
 
     private Locale locale;

@@ -12,7 +12,7 @@ public class User extends Entity {
         this.age = age;
         this.address = address;
         usersNumber++;
-        this.userId = usersNumber;
+        this.userId = usersNumber; //nadaje nr id w kolejności tworzenia kont
     }
 
     public String getName() {
